@@ -1,24 +1,34 @@
 <template>
   <div id="app" class="container">
     <search-bar @termChange="OnTermChange"/>
-    <video-list :videos="videos" />
+    <div class="row">
+      <video-detail :video="selectVideo" />
+      <video-list @onVideoSelect="videoSelect($event)" :videos="videos" />
+    </div>
   </div>
 </template>
 
 <script>
-import VideoList from "@/components/VideoList";
-const API_KEY="AIzaSyBpWgrrIRwJF21sE-VlwViSou3KBLQQ3E0";
+const buttons = document.querySelectorAll('button')
+// import VideoList from "@/components/VideoList";
 import SearchBar from "@/components/SearchBar";
+const API_KEY="AIzaSyBpWgrrIRwJF21sE-VlwViSou3KBLQQ3E0";
 import axios from 'axios'
+import VideoDetail from "@/components/VideoDetail";
+import VideoList from "@/components/VideoList";
 export default {
   name: "App",
-  components: {VideoList, SearchBar},
+  components: {VideoList, VideoDetail, SearchBar},
   data(){
     return{
-      videos:[]
+      videos:[],
+      selectVideo:null
     }
   },
   methods:{
+    videoSelect(video){
+      this.selectVideo = video
+    },
     OnTermChange(searchTerm){
       axios.get('https://www.googleapis.com/youtube/v3/search',{
         params:{
@@ -32,8 +42,14 @@ export default {
       }).catch(error=>{
         console.log(error)
       })
-}
-  }
+    },
+    addClass(){
+      console.log(buttons)
+      buttons.forEach(item=>{
+        console.log(item)
+      })
+    }
+  },
 }
 </script>
 
