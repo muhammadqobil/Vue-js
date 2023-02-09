@@ -1,5 +1,5 @@
 <template>
-  <div v-if="video" class="col-md-8">
+  <div v-if="video" class="col-sm-12 col-xs-12 col-md-8 col-lg-8">
     <div class="ratio ratio-16x9">
       <iframe :src="videoUrl" allowfullscreen />
     </div>

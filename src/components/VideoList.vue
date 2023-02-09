@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list-group col-md-4">
+    <ul class="list-group col-sm-12 col-xs-12 col-md-12 col-lg-4 fle">
       <video-list-item v-for="video in videos" @onVideoSelect="videoSelect($event)" :video="video" :key="video.etag" />
     </ul>
   </div>
